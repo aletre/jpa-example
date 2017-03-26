@@ -1,10 +1,14 @@
 package co.com.psl.training.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -18,10 +22,12 @@ public class InvoiceDetail {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
+	@Fetch(FetchMode.SELECT)
 	private Invoice invoice;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
+	@Fetch(FetchMode.JOIN)
 	private Product product;
 	
 	private double quantity;
@@ -41,6 +47,6 @@ public class InvoiceDetail {
 	
 	@Override
 	public String toString() {
-		return String.format("InvoiceDetail[invoice=%s, product=%s, quantity=%d, totalTax=%d, totalValue=%d]", invoice.getId(), product.getCode(), quantity, totalTax, totalValue);
+		return String.format("InvoiceDetail[invoice=%s, product=%s, quantity=%s, totalTax=%s, totalValue=%s]", invoice.getId(), product.getCode(), quantity, totalTax, totalValue);
 	}
 }

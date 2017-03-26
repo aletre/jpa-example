@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import co.com.psl.training.model.Product;
 
-public interface ProductRepository extends CrudRepository<Product, Long> {
+public interface ProductRepository extends CrudRepository<Product, Long>, ProductRepositoryCustom {
 
     List<Product> findByCode(String code);
 }

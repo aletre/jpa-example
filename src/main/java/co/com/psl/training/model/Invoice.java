@@ -8,8 +8,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -17,6 +19,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter @NoArgsConstructor(access=AccessLevel.PROTECTED)
+@Table(indexes = { @Index(name = "idx_cus_id", columnList = "customer_id", unique=false) })
 public class Invoice {
 
 	@Id

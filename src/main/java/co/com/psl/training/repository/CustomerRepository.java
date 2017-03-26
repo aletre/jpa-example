@@ -8,5 +8,5 @@ import co.com.psl.training.model.Customer;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
-    List<Customer> findByLastName(String lastName);
+	List<Customer> findByLastName(String lastName);
 }
